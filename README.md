@@ -1,1 +1,2 @@
-# pangaea-chanllenge
+# Pangaea Coding Challenge
+
