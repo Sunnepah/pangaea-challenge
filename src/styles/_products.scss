@@ -15,6 +15,42 @@
     height: 100%;
     padding: 40px 0;
     width: 100vw;
+
+    &--list {
+      display: grid;
+      height: 100%;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 28px;
+      justify-items: center;
+
+      @media only screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   }
 }
 
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px;
+  }
+  img {
+    width: 60%;
+    object-fit: cover;
+    max-height: 100px;
+  }
+
+  &__title {
+    margin-top: 40px;
+  }
+
+  &__price {
+    margin-bottom: 20px;
+  }
+}
