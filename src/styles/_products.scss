@@ -1,0 +1,20 @@
+.products {
+  &__header {
+    background: #fcfcfa;
+    padding: 40px 80px 30px;
+    text-align: left;
+    font-family: Muli;
+    h1 {
+      font-size: 40px;
+      font-weight: normal;
+    }
+  }
+
+  &__container {
+    background: #e2e7e3;
+    height: 100%;
+    padding: 40px 0;
+    width: 100vw;
+  }
+}
+
