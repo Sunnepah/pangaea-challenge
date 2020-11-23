@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  background: #fcfcfa;
+  height: 56px;
+  border-bottom: 1px solid #f4f5f2;
+  align-items: center;
+  padding: 0 30px;
+
+  &__account {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+
+    &--text {
+      margin-right: 20px;
+    }
+  }
+  &-link {
+    margin-left: 30px;
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
