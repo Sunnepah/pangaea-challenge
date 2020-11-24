@@ -78,7 +78,10 @@ const Products = () => {
       <section className="products__header">
         <div>
           <h1>All Products</h1>
-          <p>A 360° look at Lumin</p>
+          <div className="products__subheader">
+            <p>A 360° look at Lumin</p>
+            <button className="btn-filter"> Filter by</button>
+          </div>
         </div>
       </section>
 

@@ -14,6 +14,10 @@ a {
   color: #929291;
 }
 
+svg {
+  cursor: pointer;
+}
+
 .logo {
   font-size: 40px;
   font-weight: normal;
@@ -23,8 +27,24 @@ button {
   background: #4b5648;
   color: #ffffff;
   padding: 10px 40px;
+  outline: none;
   cursor: pointer;
   @media only screen and (max-width: 768px) {
     padding: 10px 20px;
   }
+}
+
+button.btn-white {
+  background: #ffffff;
+  color: black;
+  border: 1px solid #4b5648;
+}
+
+button.btn-filter {
+  background: #FCFCFA;
+  padding: 10px;
+  color: #BEC1BB;
+  border: 1px solid #EEEFED;
+  width: 300px;
+  text-align: left;
 }

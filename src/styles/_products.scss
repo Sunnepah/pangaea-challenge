@@ -1,13 +1,21 @@
 .products {
   &__header {
     background: #fcfcfa;
-    padding: 40px 80px 30px;
+    padding: 40px 100px 30px;
     text-align: left;
     font-family: Muli;
     h1 {
       font-size: 40px;
       font-weight: normal;
     }
+    @media only screen and (max-width: 768px) {
+      padding:  40px 20px 30px;
+    }
+  }
+
+  &__subheader{
+    display: flex;
+    justify-content: space-between;
   }
 
   &__container {
