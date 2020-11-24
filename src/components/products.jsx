@@ -9,10 +9,9 @@ import Cart from './cart';
 
 const Products = () => {
   const [displayCart, setDisplayCart] = useState(false);
-  const [currencySymbol, setCurrencySymbol] = useState({
-    symbol: getSymbolFromCurrency('USD'),
-    currency: 'USD',
-  });
+  const [currencySymbol, setCurrencySymbol] = useState(
+    getSymbolFromCurrency('USD')
+  );
   const { data, refetch: refetchProducts } = useQuery(GET_PRODUCTS, {
     variables: { currency: 'USD' },
   });
@@ -29,7 +28,7 @@ const Products = () => {
 
   const removeItemFromCart = (product) => {
     const cartItem = getItem(product);
-    if (cartItem.quantity > 1) {
+    if (cartItem?.quantity > 1) {
       cartItem.quantity = cartItem.quantity - 1;
       cartItem.totalAmount = product.price * cartItem.quantity;
       cartItemsVar([...cartItemsVar()]);

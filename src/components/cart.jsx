@@ -1,12 +1,13 @@
-import React from 'react';
-import { useApolloClient } from '@apollo/client';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CartItem from './cart-item';
-import { GET_ALL_CURRENCY, GET_PRODUCTS } from '../queries';
+import { GET_ALL_CURRENCY } from '../queries';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { cartItemsVar } from '../apollo';
 import getSymbolFromCurrency from 'currency-symbol-map';
+
+const errorousCurrencies = ['LBP', 'AED', 'SAR', 'QAR'];
 
 const Cart = ({
   hideCart,
@@ -19,14 +20,14 @@ const Cart = ({
 }) => {
   const { data: currencyData } = useQuery(GET_ALL_CURRENCY);
   const cartItems = useReactiveVar(cartItemsVar);
-  const client = useApolloClient();
+  const [currencyCode, setCurrencyCode] = useState('USD');
 
   /**
-   * THE API THROWS AN ERROR WHEN THE "AED" CURRENCY IS PASSED TO THE PRODUCT QUERY
-   * FILTERING IT OUT TO AVOID BREAKING OF CODE
+   THE API THROWS AN ERROR WHEN THE SOME CURRENCIES ARE PASSED TO THE PRODUCT QUERY.
+   FILTERING THEM OUT TO AVOID BREAKING OF CODE
    */
   const updatedCurrency = currencyData?.currency?.filter(
-    (currency) => currency !== 'AED'
+    (currency) => !errorousCurrencies.includes(currency)
   );
 
   const totalAmount = cartItems.reduce((acc, current) => {
@@ -35,26 +36,25 @@ const Cart = ({
   }, 0);
 
   const updateCurrency = async (e) => {
-    setCurrencySymbol({
-      currency: e.target.value.trim(),
-      symbol: getSymbolFromCurrency(e.target.value),
-    });
-    await refetchProducts({ currency: e.target.value });
+    setCurrencyCode(e.target.value);
 
-    const data = client.readQuery({
-      query: GET_PRODUCTS,
-      variables: { currency: e.target.value },
-    });
+    const { data } = await refetchProducts({ currency: e.target.value });
 
     // Update product price based on the new currency
-    data?.products.forEach((product) => {
-      const cartItem = cartItemsVar().find((item) => item.id === product.id);
+    const updatedCartItems = data?.products.reduce((acc, current) => {
+      const cartItem = cartItemsVar().find(
+        (cartItem) => cartItem.id === current.id
+      );
       if (cartItem) {
-        cartItem.totalAmount = product.price * cartItem.quantity;
-        cartItem.price = product.price;
-        cartItemsVar([...cartItemsVar()]);
+        cartItem.totalAmount = current.price * cartItem.quantity;
+        cartItem.price = current.price;
+        acc.push(cartItem);
       }
-    });
+      return acc;
+    }, []);
+
+    cartItemsVar([...updatedCartItems]);
+    setCurrencySymbol(getSymbolFromCurrency(e.target.value));
   };
 
   return (
@@ -64,7 +64,7 @@ const Cart = ({
           <FontAwesomeIcon icon={faArrowLeft} onClick={hideCart} />
           <p>YOUR CART</p>
         </div>
-        <select onChange={updateCurrency} value={currencySymbol.currency}>
+        <select onChange={updateCurrency} value={currencyCode}>
           {updatedCurrency?.length
             ? updatedCurrency?.map((currency) => {
                 return (
@@ -101,7 +101,7 @@ const Cart = ({
               <div className="cart__subtotal">
                 <span>Subtotal</span>
                 <p>
-                  {currencySymbol.symbol}
+                  {currencySymbol}
                   <span>{totalAmount.toFixed(2)}</span>
                 </p>
               </div>
@@ -112,7 +112,7 @@ const Cart = ({
             </div>
           </>
         ) : (
-          <p className="empty-cart"> No Items in your Cart</p>
+          <p className="empty-cart"> There are no items in your cart</p>
         )}
       </div>
     </div>
