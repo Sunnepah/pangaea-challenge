@@ -5,7 +5,12 @@ import { cartItemsVar } from '../apollo';
 import { useReactiveVar } from '@apollo/client';
 
 const Header = () => {
-  const numberOfCartItems = useReactiveVar(cartItemsVar).length;
+  const numberOfCartItems = useReactiveVar(cartItemsVar).reduce(
+    (acc, cartItem) => {
+      return acc + cartItem.quantity;
+    },
+    0
+  );
 
   return (
     <div className="header">
