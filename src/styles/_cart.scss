@@ -1,0 +1,154 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.cart {
+  &__container {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: auto;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    background: #f2f3f0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    padding: 0 28px;
+    max-width: 528px;
+    height: 100%;
+    margin-left: auto;
+
+    &--top {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      p {
+        margin: auto;
+      }
+    }
+
+    hr {
+      border: 1px solid #ccd2cd;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    select {
+      padding: 8px 10px;
+      max-width: 80px;
+      border: none;
+      margin-top: 20px;
+      outline: none;
+    }
+  }
+
+  &__subtotal {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    p {
+      margin-left: auto;
+      display: flex;
+      span {
+        margin-left: 2px;
+      }
+    }
+  }
+}
+.cartitems {
+  overflow: auto;
+  flex: 1;
+
+  .empty-cart {
+    margin-top: 30px;
+  }
+}
+
+.cartitem {
+  &--wrapper {
+    background: #ffffff;
+    text-align: left;
+    margin-top: 20px;
+    display: flex;
+
+    &-left {
+      width: 70%;
+      padding-right: 30px;
+      padding: 20px;
+    }
+
+    &-right {
+      background: #fdfdfd;
+      position: relative;
+      padding: 10px;
+      text-align: center;
+      width: 30%;
+      flex-direction: column;
+
+      svg {
+        float: right;
+        cursor: pointer;
+      }
+      img.productimage {
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &--title {
+    margin-bottom: 50px;
+  }
+
+  &--price {
+    display: flex;
+    .amount {
+      display: flex;
+      margin-left: auto;
+
+      span:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &--inputgroup {
+    svg {
+      height: 10px;
+      cursor: pointer;
+    }
+    width: 60px;
+    border: 1px solid #e8e8e8;
+    outline: none;
+    text-align: center;
+    display: flex;
+    padding: 5px 8px;
+    align-items: center;
+
+    input {
+      border: none;
+      width: 100%;
+      outline: none;
+      text-align: center;
+    }
+  }
+}
