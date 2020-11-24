@@ -12,7 +12,7 @@
 
   &__container {
     background: #e2e7e3;
-    height: 100%;
+    min-height: 100vh;
     padding: 40px 10px;
 
     &--list {

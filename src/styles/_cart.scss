@@ -70,6 +70,15 @@ input[type='number'] {
       }
     }
   }
+  &-count {
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: -12px;
+    margin-left: -3px;
+  }
 }
 .cartitems {
   overflow: auto;
