@@ -33,7 +33,7 @@ const CartItem = ({
           </div>
 
           <p className="amount">
-            <span>{currencySymbol}</span>
+            <span>{currencySymbol.symbol}</span>
             <span> {cartItem.totalAmount}</span>
           </p>
         </div>

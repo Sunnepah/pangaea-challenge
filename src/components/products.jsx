@@ -9,9 +9,10 @@ import Cart from './cart';
 
 const Products = () => {
   const [displayCart, setDisplayCart] = useState(false);
-  const [currencySymbol, setCurrencySymbol] = useState(
-    getSymbolFromCurrency('USD')
-  );
+  const [currencySymbol, setCurrencySymbol] = useState({
+    symbol: getSymbolFromCurrency('USD'),
+    currency: 'USD',
+  });
   const { data, refetch: refetchProducts } = useQuery(GET_PRODUCTS, {
     variables: { currency: 'USD' },
   });

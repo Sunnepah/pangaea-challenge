@@ -22,7 +22,7 @@ const Cart = ({
   const client = useApolloClient();
 
   /**
-   * THE API THROWS AN ERROR WITH THE "AED" CURRENCY IS PASSED TO THE PRODUCT QUERY
+   * THE API THROWS AN ERROR WHEN THE "AED" CURRENCY IS PASSED TO THE PRODUCT QUERY
    * FILTERING IT OUT TO AVOID BREAKING OF CODE
    */
   const updatedCurrency = currencyData?.currency?.filter(
@@ -35,8 +35,12 @@ const Cart = ({
   }, 0);
 
   const updateCurrency = async (e) => {
+    setCurrencySymbol({
+      currency: e.target.value.trim(),
+      symbol: getSymbolFromCurrency(e.target.value),
+    });
     await refetchProducts({ currency: e.target.value });
-    setCurrencySymbol(getSymbolFromCurrency(e.target.value));
+
     const data = client.readQuery({
       query: GET_PRODUCTS,
       variables: { currency: e.target.value },
@@ -60,7 +64,7 @@ const Cart = ({
           <FontAwesomeIcon icon={faArrowLeft} onClick={hideCart} />
           <p>YOUR CART</p>
         </div>
-        <select onChange={updateCurrency}>
+        <select onChange={updateCurrency} value={currencySymbol.currency}>
           {updatedCurrency?.length
             ? updatedCurrency?.map((currency) => {
                 return (
@@ -96,7 +100,7 @@ const Cart = ({
         <div className="cart__subtotal">
           <span>Subtotal</span>
           <p>
-            {currencySymbol}
+            {currencySymbol.symbol}
             <span>{totalAmount.toFixed(2)}</span>
           </p>
         </div>

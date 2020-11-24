@@ -7,7 +7,7 @@ const SingleProduct = ({ product, currencySymbol, handleAddToCart }) => {
         <img src={product.image_url} alt="product" />
         <p className="product__title"> {product.title}</p>
         <p className="product__price">
-          From {currencySymbol}
+          From {currencySymbol.symbol}
           <span>{product.price.toFixed(2)}</span>
         </p>
 
