@@ -34,12 +34,35 @@ input[type='number'] {
     height: 100%;
     margin-left: auto;
 
+    .empty-cart {
+      margin-top: 30px;
+    }
+
     &--top {
       margin-top: 20px;
       display: flex;
       align-items: center;
       p {
         margin: auto;
+      }
+    }
+
+    &--buttom {
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      margin-bottom: 30px;
+      p {
+        margin-left: auto;
+        display: flex;
+        span {
+          margin-left: 2px;
+        }
+      }
+      button{
+        width: 100%;
+        margin-top: 10px;
       }
     }
 
@@ -60,15 +83,7 @@ input[type='number'] {
 
   &__subtotal {
     display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    p {
-      margin-left: auto;
-      display: flex;
-      span {
-        margin-left: 2px;
-      }
-    }
+    width: 100%;
   }
   &-count {
     text-align: center;
@@ -84,9 +99,7 @@ input[type='number'] {
   overflow: auto;
   flex: 1;
 
-  .empty-cart {
-    margin-top: 30px;
-  }
+
 }
 
 .cartitem {
@@ -151,6 +164,7 @@ input[type='number'] {
     text-align: center;
     display: flex;
     padding: 5px 8px;
+    margin-right: 10px;
     align-items: center;
 
     input {

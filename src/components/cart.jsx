@@ -75,35 +75,45 @@ const Cart = ({
               })
             : ''}
         </select>
-        <div className="cartitems">
-          {cartItems.length ? (
-            <>
-              {cartItems.map((cartItem) => {
-                return (
-                  <CartItem
-                    cartItem={cartItem}
-                    key={cartItem.id}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    deleteCartItem={deleteCartItem}
-                    currencySymbol={currencySymbol}
-                  />
-                );
-              })}
-            </>
-          ) : (
-            <p className="empty-cart"> No Items in your Cart</p>
-          )}
-        </div>
+        {cartItems.length ? (
+          <>
+            <div className="cartitems">
+              {!!cartItems.length && (
+                <>
+                  {cartItems.map((cartItem) => {
+                    return (
+                      <CartItem
+                        cartItem={cartItem}
+                        key={cartItem.id}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                        deleteCartItem={deleteCartItem}
+                        currencySymbol={currencySymbol}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </div>
 
-        <hr />
-        <div className="cart__subtotal">
-          <span>Subtotal</span>
-          <p>
-            {currencySymbol.symbol}
-            <span>{totalAmount.toFixed(2)}</span>
-          </p>
-        </div>
+            <hr />
+            <div className="cart__body--buttom">
+              <div className="cart__subtotal">
+                <span>Subtotal</span>
+                <p>
+                  {currencySymbol.symbol}
+                  <span>{totalAmount.toFixed(2)}</span>
+                </p>
+              </div>
+              <button className="btn-white">
+                MAKE THIS A SUBSCRIPTION (SAVE 20%)
+              </button>
+              <button>PROCEED TO CHECKOUT</button>
+            </div>
+          </>
+        ) : (
+          <p className="empty-cart"> No Items in your Cart</p>
+        )}
       </div>
     </div>
   );
