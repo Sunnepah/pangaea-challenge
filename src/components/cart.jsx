@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CartItem from './cart-item';
@@ -15,12 +15,11 @@ const Cart = ({
   removeFromCart,
   deleteCartItem,
   refetchProducts,
-  setCurrencySymbol,
-  currencySymbol,
+  setCurrency,
+  currency,
 }) => {
   const { data: currencyData } = useQuery(GET_ALL_CURRENCY);
   const cartItems = useReactiveVar(cartItemsVar);
-  const [currencyCode, setCurrencyCode] = useState('USD');
 
   /**
    THE API THROWS AN ERROR WHEN THE SOME CURRENCIES ARE PASSED TO THE PRODUCT QUERY.
@@ -36,15 +35,12 @@ const Cart = ({
   }, 0);
 
   const updateCurrency = async (e) => {
-    setCurrencyCode(e.target.value);
-
-    const { data } = await refetchProducts({ currency: e.target.value });
+    const value = e.target.value;
+    const { data } = await refetchProducts({ currency: value });
 
     // Update product price based on the new currency
     const updatedCartItems = data?.products.reduce((acc, current) => {
-      const cartItem = cartItemsVar().find(
-        (cartItem) => cartItem.id === current.id
-      );
+      const cartItem = cartItems.find((cartItem) => cartItem.id === current.id);
       if (cartItem) {
         cartItem.totalAmount = current.price * cartItem.quantity;
         cartItem.price = current.price;
@@ -54,7 +50,10 @@ const Cart = ({
     }, []);
 
     cartItemsVar([...updatedCartItems]);
-    setCurrencySymbol(getSymbolFromCurrency(e.target.value));
+    setCurrency({
+      code: value,
+      symbol: getSymbolFromCurrency(value),
+    });
   };
 
   return (
@@ -64,7 +63,7 @@ const Cart = ({
           <FontAwesomeIcon icon={faArrowLeft} onClick={hideCart} />
           <p>YOUR CART</p>
         </div>
-        <select onChange={updateCurrency} value={currencyCode}>
+        <select onChange={updateCurrency} value={currency.code}>
           {updatedCurrency?.length
             ? updatedCurrency?.map((currency) => {
                 return (
@@ -88,7 +87,7 @@ const Cart = ({
                         addToCart={addToCart}
                         removeFromCart={removeFromCart}
                         deleteCartItem={deleteCartItem}
-                        currencySymbol={currencySymbol}
+                        currency={currency}
                       />
                     );
                   })}
@@ -101,7 +100,7 @@ const Cart = ({
               <div className="cart__subtotal">
                 <span>Subtotal</span>
                 <p>
-                  {currencySymbol}
+                  {currency.symbol}
                   <span>{totalAmount.toFixed(2)}</span>
                 </p>
               </div>

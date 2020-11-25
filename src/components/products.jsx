@@ -9,9 +9,10 @@ import Cart from './cart';
 
 const Products = () => {
   const [displayCart, setDisplayCart] = useState(false);
-  const [currencySymbol, setCurrencySymbol] = useState(
-    getSymbolFromCurrency('USD')
-  );
+  const [currency, setCurrency] = useState({
+    code: 'USD',
+    symbol: getSymbolFromCurrency('USD'),
+  });
   const { data, refetch: refetchProducts } = useQuery(GET_PRODUCTS, {
     variables: { currency: 'USD' },
   });
@@ -70,8 +71,8 @@ const Products = () => {
           removeFromCart={removeItemFromCart}
           refetchProducts={refetchProducts}
           deleteCartItem={deleteCartItem}
-          setCurrencySymbol={setCurrencySymbol}
-          currencySymbol={currencySymbol}
+          setCurrency={setCurrency}
+          currency={currency}
         />
       )}
       <section className="products__header">
@@ -93,8 +94,8 @@ const Products = () => {
                     product={product}
                     key={product.id}
                     refetchProducts={refetchProducts}
-                    currencySymbol={currencySymbol}
-                    setCurrencySymbol={setCurrencySymbol}
+                    currency={currency}
+                    setCurrency={setCurrency}
                     handleAddToCart={handleAddToCart}
                   />
                 );

@@ -11,7 +11,7 @@ const CartItem = ({
   addToCart,
   removeFromCart,
   deleteCartItem,
-  currencySymbol,
+  currency,
 }) => {
   const handleAddToCart = () => {
     addToCart(cartItem);
@@ -33,7 +33,7 @@ const CartItem = ({
           </div>
 
           <p className="amount">
-            <span>{currencySymbol}</span>
+            <span>{currency.symbol}</span>
             <span> {cartItem.totalAmount.toFixed(2)}</span>
           </p>
         </div>
