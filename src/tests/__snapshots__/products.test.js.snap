@@ -102,7 +102,9 @@ exports[`renders Cart with items when the Add to Cart button is clicked 1`] = `
             <p
               className="amount"
             >
-              <span />
+              <span>
+                $
+              </span>
               <span>
                  
                 700.00
@@ -150,6 +152,7 @@ exports[`renders Cart with items when the Add to Cart button is clicked 1`] = `
           Subtotal
         </span>
         <p>
+          $
           <span>
             700.00
           </span>
@@ -169,7 +172,9 @@ exports[`renders Cart with items when the Add to Cart button is clicked 1`] = `
 `;
 
 exports[`renders product list Component 1`] = `
-<div>
+<div
+  className="products"
+>
   <section
     className="products__header"
   >

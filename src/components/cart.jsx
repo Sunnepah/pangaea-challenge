@@ -7,7 +7,7 @@ import { useQuery, useReactiveVar } from '@apollo/client';
 import { cartItemsVar } from '../apollo';
 import getSymbolFromCurrency from 'currency-symbol-map';
 
-const errorousCurrencies = ['LBP', 'AED', 'SAR', 'QAR'];
+const erroneousCurrencies = ['LBP', 'AED', 'SAR', 'QAR'];
 
 const Cart = ({
   hideCart,
@@ -26,7 +26,7 @@ const Cart = ({
    FILTERING THEM OUT TO AVOID BREAKING OF CODE
    */
   const updatedCurrency = currencyData?.currency?.filter(
-    (currency) => !errorousCurrencies.includes(currency)
+    (currency) => !erroneousCurrencies.includes(currency)
   );
 
   const totalAmount = cartItems.reduce((acc, current) => {
@@ -35,8 +35,8 @@ const Cart = ({
   }, 0);
 
   const updateCurrency = async (e) => {
-    const value = e.target.value;
-    const { data } = await refetchProducts({ currency: value });
+    const currencyCode = e.target.value;
+    const { data } = await refetchProducts({ currency: currencyCode });
 
     // Update product price based on the new currency
     const updatedCartItems = data?.products.reduce((acc, current) => {
@@ -51,8 +51,8 @@ const Cart = ({
 
     cartItemsVar([...updatedCartItems]);
     setCurrency({
-      code: value,
-      symbol: getSymbolFromCurrency(value),
+      code: currencyCode,
+      symbol: getSymbolFromCurrency(currencyCode),
     });
   };
 
@@ -63,7 +63,7 @@ const Cart = ({
           <FontAwesomeIcon icon={faArrowLeft} onClick={hideCart} />
           <p>YOUR CART</p>
         </div>
-        <select onChange={updateCurrency} value={currency.code}>
+        <select onChange={updateCurrency} value={currency?.code}>
           {updatedCurrency?.length
             ? updatedCurrency?.map((currency) => {
                 return (

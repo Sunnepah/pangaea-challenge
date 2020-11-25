@@ -1,7 +1,7 @@
 import TestRenderer, { create } from 'react-test-renderer';
 import Products from '../components/products';
 import Cart from '../components/cart';
-import { GET_PRODUCTS, GET_ALL_CURRENCY } from '../queries';
+import { GET_PRODUCTS } from '../queries';
 import { MockedProvider } from '@apollo/client/testing';
 
 const productsMock = [
@@ -24,20 +24,6 @@ const productsMock = [
   },
 ];
 
-const currrencyMock = [
-  {
-    request: {
-      query: GET_ALL_CURRENCY,
-    },
-    result: {
-      data: {
-        currency: ['USD', 'NGN', 'EUR'],
-      },
-      refetch: () => {},
-    },
-  },
-];
-
 const { act } = TestRenderer;
 let component;
 
@@ -45,7 +31,7 @@ test('renders product list Component', async () => {
   await act(async () => {
     component = create(
       <MockedProvider mocks={productsMock} addTypename={false}>
-        <Products />
+        <Products setDisplayCart={() => false} />
       </MockedProvider>
     );
     return new Promise((resolve) => setTimeout(resolve, 0));
@@ -60,8 +46,8 @@ test('renders Cart with items when the Add to Cart button is clicked', async () 
 
   await act(async () => {
     component.update(
-      <MockedProvider mocks={currrencyMock} addTypename={false}>
-        <Cart />
+      <MockedProvider addTypename={false}>
+        <Cart currency={{ symbol: '$', code: 'USD' }} />
       </MockedProvider>
     );
     addToCartButton.props.onClick();
@@ -72,10 +58,10 @@ test('renders Cart with items when the Add to Cart button is clicked', async () 
 });
 
 test('renders content of the Cart component', async () => {
-  const selectCurrency = component.root.findByType('select');
+  const selectElement = component.root.findByType('select');
   const subTotalText = component.root.findAllByType('span');
 
-  expect(selectCurrency.props.value).toContain('USD');
+  expect(selectElement.props.value).toContain('USD');
   expect(component.root.findAllByType('p')[0].children).toContain('YOUR CART');
   expect(subTotalText[2].children).toContain('Subtotal');
 });
