@@ -4,7 +4,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { cartItemsVar } from '../apollo';
 import { useReactiveVar } from '@apollo/client';
 
-const Header = () => {
+const Header = ({ setDisplayCart }) => {
   const numberOfCartItems = useReactiveVar(cartItemsVar).reduce(
     (acc, cartItem) => {
       return acc + cartItem.quantity;
@@ -24,7 +24,10 @@ const Header = () => {
 
       <div className="header__account">
         <p className="header__account--text">Account</p>
-        <FontAwesomeIcon icon={faShoppingCart} />
+        <FontAwesomeIcon
+          icon={faShoppingCart}
+          onClick={() => setDisplayCart((display) => !display)}
+        />
         {!!numberOfCartItems && (
           <p className="cart-count">{numberOfCartItems}</p>
         )}
