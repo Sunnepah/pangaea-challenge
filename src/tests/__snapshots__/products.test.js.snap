@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Cart with items when the Add to Cart button is clicked 1`] = `
+<div
+  className="cart__container"
+>
+  <div
+    className="cart__body"
+  >
+    <div
+      className="cart__body--top"
+    >
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-arrow-left fa-w-14 "
+        data-icon="arrow-left"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
+      <p>
+        YOUR CART
+      </p>
+    </div>
+    <select
+      onChange={[Function]}
+      value="USD"
+    >
+      
+    </select>
+    <div
+      className="cartitems"
+    >
+      <div
+        className="cartitem--wrapper"
+      >
+        <div
+          className="cartitem--wrapper-left"
+        >
+          <p
+            className="cartitem--title"
+          >
+            Seil
+          </p>
+          <div
+            className="cartitem--price"
+          >
+            <div
+              className="cartitem--inputgroup"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-minus fa-w-14 "
+                data-icon="minus"
+                data-prefix="fas"
+                focusable="false"
+                onClick={[Function]}
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+              <input
+                readOnly={true}
+                type="number"
+                value={1}
+              />
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-plus fa-w-14 "
+                data-icon="plus"
+                data-prefix="fas"
+                focusable="false"
+                onClick={[Function]}
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </div>
+            <p
+              className="amount"
+            >
+              <span />
+              <span>
+                 
+                700
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="cartitem--wrapper-right"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-window-close fa-w-16 "
+            data-icon="window-close"
+            data-prefix="fas"
+            focusable="false"
+            onClick={[Function]}
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <img
+            alt="product"
+            className="productimage"
+            src=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div
+      className="cart__body--buttom"
+    >
+      <div
+        className="cart__subtotal"
+      >
+        <span>
+          Subtotal
+        </span>
+        <p>
+          <span>
+            700.00
+          </span>
+        </p>
+      </div>
+      <button
+        className="btn-white"
+      >
+        MAKE THIS A SUBSCRIPTION (SAVE 20%)
+      </button>
+      <button>
+        PROCEED TO CHECKOUT
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders product list Component 1`] = `
+<div>
+  <section
+    className="products__header"
+  >
+    <div>
+      <h1>
+        All Products
+      </h1>
+      <div
+        className="products__subheader"
+      >
+        <p>
+          A 360° look at Lumin
+        </p>
+        <button
+          className="btn-filter"
+        >
+           Filter by
+        </button>
+      </div>
+    </div>
+  </section>
+  <section
+    className="products__container"
+  >
+    <div
+      className="products__container--list"
+    >
+      <div
+        className="product"
+      >
+        <img
+          alt="product"
+          src=""
+        />
+        <p
+          className="product__title"
+        >
+           
+          Seil
+        </p>
+        <p
+          className="product__price"
+        >
+          From 
+          $
+          <span>
+            700.00
+          </span>
+        </p>
+        <button
+          onClick={[Function]}
+        >
+          Add To Cart
+        </button>
+      </div>
+      <div
+        className="product"
+      >
+        <img
+          alt="product"
+          src=""
+        />
+        <p
+          className="product__title"
+        >
+           
+          Cap
+        </p>
+        <p
+          className="product__price"
+        >
+          From 
+          $
+          <span>
+            700.00
+          </span>
+        </p>
+        <button
+          onClick={[Function]}
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+`;
