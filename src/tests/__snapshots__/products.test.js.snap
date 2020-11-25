@@ -249,7 +249,7 @@ exports[`renders product list Component 1`] = `
           From 
           $
           <span>
-            700.00
+            900.00
           </span>
         </p>
         <button

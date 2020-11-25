@@ -16,7 +16,7 @@ const productsMock = [
       data: {
         products: [
           { id: '1', title: 'Seil', price: 700, image_url: '' },
-          { id: '2', title: 'Cap', price: 700, image_url: '' },
+          { id: '2', title: 'Cap', price: 900, image_url: '' },
         ],
       },
       refetch: () => {},
