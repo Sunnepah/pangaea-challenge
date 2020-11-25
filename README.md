@@ -13,3 +13,6 @@
 - Install project dependencies with `npm install`
 - Start the application with the script `npm start`
 - Visit the app on the browser using the running port
+
+## Test
+- Run test with `npm test` command
