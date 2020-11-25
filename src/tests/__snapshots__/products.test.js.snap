@@ -105,7 +105,7 @@ exports[`renders Cart with items when the Add to Cart button is clicked 1`] = `
               <span />
               <span>
                  
-                700
+                700.00
               </span>
             </p>
           </div>
