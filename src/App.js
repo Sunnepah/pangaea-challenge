@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Header from './components/header';
 import Products from './components/products';
 import { ApolloProvider } from '@apollo/client';
 import client from './apollo';
+import { enableBodyScroll, disableBodyScroll } from './util';
 
 function App() {
   /**
@@ -12,6 +14,17 @@ function App() {
   which is being addressed in this open PR https://github.com/apollographql/apollo-client/pull/7148
   **/
   const [displayCart, setDisplayCart] = useState(false);
+
+  useEffect(() => {
+    if (displayCart) {
+      disableBodyScroll();
+    } else {
+      enableBodyScroll();
+    }
+    return () => {
+      enableBodyScroll();
+    };
+  }, [displayCart]);
 
   return (
     <ApolloProvider client={client}>
