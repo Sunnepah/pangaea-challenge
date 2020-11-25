@@ -7,8 +7,7 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import { cartItemsVar } from '../apollo';
 import Cart from './cart';
 
-const Products = () => {
-  const [displayCart, setDisplayCart] = useState(false);
+const Products = ({ displayCart, setDisplayCart }) => {
   const [currency, setCurrency] = useState({
     code: 'USD',
     symbol: getSymbolFromCurrency('USD'),
@@ -17,7 +16,7 @@ const Products = () => {
     variables: { currency: 'USD' },
   });
 
-  const getItem = (item) => {
+  const getCartItem = (item) => {
     const cartItems = cartItemsVar();
     return cartItems.find((cartItem) => cartItem.id === item.id);
   };
@@ -28,7 +27,7 @@ const Products = () => {
   };
 
   const removeItemFromCart = (product) => {
-    const cartItem = getItem(product);
+    const cartItem = getCartItem(product);
     if (cartItem?.quantity > 1) {
       cartItem.quantity = cartItem.quantity - 1;
       cartItem.totalAmount = product.price * cartItem.quantity;
@@ -47,7 +46,7 @@ const Products = () => {
   };
 
   const addItemToCart = (product) => {
-    const cartItem = getItem(product);
+    const cartItem = getCartItem(product);
     if (!cartItem) {
       const updatedProduct = {
         ...product,
@@ -63,7 +62,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+    <>
       {displayCart && (
         <Cart
           hideCart={() => setDisplayCart(false)}
@@ -75,35 +74,37 @@ const Products = () => {
           currency={currency}
         />
       )}
-      <section className="products__header">
-        <div>
-          <h1>All Products</h1>
-          <div className="products__subheader">
-            <p>A 360° look at Lumin</p>
-            <button className="btn-filter"> Filter by</button>
+      <div className="products">
+        <section className="products__header">
+          <div>
+            <h1>All Products</h1>
+            <div className="products__subheader">
+              <p>A 360° look at Lumin</p>
+              <button className="btn-filter"> Filter by</button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="products__container">
-        <div className="products__container--list">
-          {data?.products?.length
-            ? data?.products.map((product) => {
-                return (
-                  <SingleProduct
-                    product={product}
-                    key={product.id}
-                    refetchProducts={refetchProducts}
-                    currency={currency}
-                    setCurrency={setCurrency}
-                    handleAddToCart={handleAddToCart}
-                  />
-                );
-              })
-            : ''}
-        </div>
-      </section>
-    </div>
+        <section className="products__container">
+          <div className="products__container--list">
+            {data?.products?.length
+              ? data?.products.map((product) => {
+                  return (
+                    <SingleProduct
+                      product={product}
+                      key={product.id}
+                      refetchProducts={refetchProducts}
+                      currency={currency}
+                      setCurrency={setCurrency}
+                      handleAddToCart={handleAddToCart}
+                    />
+                  );
+                })
+              : ''}
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
