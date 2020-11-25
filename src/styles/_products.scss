@@ -1,21 +1,32 @@
 .products {
+  background: #fcfcfa;
   &__header {
     background: #fcfcfa;
     padding: 40px 100px 30px;
     text-align: left;
     font-family: Muli;
+    max-width: 1440px;
+    margin: 0 auto;
     h1 {
       font-size: 40px;
       font-weight: normal;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 28px;
+      }
     }
     @media only screen and (max-width: 768px) {
-      padding:  40px 20px 30px;
+      padding: 40px 20px 30px;
     }
   }
 
-  &__subheader{
+  &__subheader {
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__container {
@@ -29,6 +40,8 @@
       grid-template-columns: repeat(3, 1fr);
       row-gap: 80px;
       justify-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
 
       @media only screen and (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);

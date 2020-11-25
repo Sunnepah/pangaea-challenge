@@ -60,7 +60,7 @@ input[type='number'] {
           margin-left: 2px;
         }
       }
-      button{
+      button {
         width: 100%;
         margin-top: 10px;
       }
@@ -98,8 +98,6 @@ input[type='number'] {
 .cartitems {
   overflow: auto;
   flex: 1;
-
-
 }
 
 .cartitem {
@@ -143,6 +141,7 @@ input[type='number'] {
 
   &--price {
     display: flex;
+    align-items: center;
     .amount {
       display: flex;
       margin-left: auto;
