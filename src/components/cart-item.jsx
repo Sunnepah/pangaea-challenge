@@ -34,7 +34,7 @@ const CartItem = ({
 
           <p className="amount">
             <span>{currencySymbol}</span>
-            <span> {cartItem.totalAmount}</span>
+            <span> {cartItem.totalAmount.toFixed(2)}</span>
           </p>
         </div>
       </div>
