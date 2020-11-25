@@ -6,6 +6,7 @@
 
 - React
 - GraphQL
+- ApolloClient
 
 ## Getting Started
 
