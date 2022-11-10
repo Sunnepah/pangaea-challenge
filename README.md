@@ -8,8 +8,8 @@
 - GraphQL
 - ApolloClient
 
-## Getting Started v14.18.1
-
+## Getting Started
+- use node v14.18.1
 - Clone this repository
 - Install project dependencies with `npm install`
 - Start the application with the script `npm start`
