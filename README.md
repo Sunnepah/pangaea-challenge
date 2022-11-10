@@ -8,7 +8,7 @@
 - GraphQL
 - ApolloClient
 
-## Getting Started
+## Getting Started v14.18.1
 
 - Clone this repository
 - Install project dependencies with `npm install`
